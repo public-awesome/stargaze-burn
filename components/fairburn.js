@@ -11,7 +11,7 @@ export default function FairBurn() {
     if (error) return <div className="lg:text-3xl text-2xl text-white font-sans text-center mx-auto pt-3">Failed to load</div>
     if (!data) return <div className="lg:text-3xl text-2xl text-white font-sans text-center mx-auto pt-3">Loading...</div>
 
-    const fairburn = (data.total_burned).toLocaleString('en-US')
+    const fairburn = (data.total_burn).toLocaleString('en-US')
 
     return (
         <h2 className="lg:text-5xl text-4xl text-white font-sans text-center mx-auto pt-3"><CountUp end={fairburn} duration={3} separator="," decimals="2"></CountUp></h2>
