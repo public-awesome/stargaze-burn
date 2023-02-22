@@ -11,20 +11,20 @@ import StakedSupply from '@/components/staked'
 export default function Home({burnval, data}) {
   return (
    <section className="flex flex-col justify-between h-screen max-h-screen">
-            <NextSeo
-          title={burnval + ` $STARS `}
-          description={`Welcome to Stargaze where we have already burned: ` + burnval + ` $STARS.`}
-        />
+    <NextSeo
+      title={burnval + ` $STARS Burned - Stargaze Fair Burn`}
+      description={`Welcome to Stargaze where we have already burned: ` + burnval + ` $STARS.`}
+    />
     <nav className="flex w-full bg-stargaze-accent py-2">
       <div className="flex flex-row m-auto overflow-hidden relative w-auto">
-          <ul className="flex flex-row w-[calc(400px*4)] animate-scroll font-sans"> 
-            <li className="w-[400px]">BURNED 🔥 {burnval} /</li>
+          <ul className="light:text-white dark:text-white flex flex-row w-[calc(400px*4)] animate-scroll font-sans"> 
+            <li className="text-white w-[400px]">BURNED 🔥 {burnval} /</li>
             <LiquidSupply />
             <TotalSupply />
             <StakedSupply />
           </ul>
           <ul className="flex flex-row w-[calc(400px*4)] animate-scroll font-sans">
-            <li className="w-[400px]">BURNED 🔥 {burnval} /</li>
+            <li className="light:text-white w-[400px]">BURNED 🔥 {burnval} /</li>
             <LiquidSupply />
             <TotalSupply />
             <StakedSupply />
@@ -32,8 +32,8 @@ export default function Home({burnval, data}) {
         </div>
     </nav>
     <div className="flex flex-col justify-center px-6 h-2/3">
-      <img src="stargaze.png" className="w-8/12 lg:w-4/12 m-auto pt-16" />
-      <h1 className="text-4xl text-white font-sans text-center pt-16">TOTAL B🔥RNED</h1>
+      <img src="stargaze.png" className="w-8/12 lg:w-4/12 mx-auto pt-16" />
+      <h1 className="lg:text-4xl text-4xl text-white font-sans text-center pt-16">TOTAL B🔥RNED</h1>
       <h2 className="lg:text-5xl text-4xl text-white font-sans text-center mx-auto pt-3"><CountUp end={data[0].total_burn} duration={3} separator="," decimals="2" /></h2>
       <button data-tooltip-target="tooltip-default" className="bg-stargaze-accent hover:bg-black text-white py-3 px-4 rounded mx-auto mt-10">
         BURN MORE 🔥
