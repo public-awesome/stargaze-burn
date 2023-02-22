@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import CountUp, { useCountUp } from 'react-countup'
 import { NextSeo } from 'next-seo';
+import axios from 'axios';
 
 import Gauge from '@/components/gauge.js'
 import TotalSupply from '@/components/supply'
@@ -52,8 +53,8 @@ export default function Home({burnval, data}) {
 export async function getServerSideProps() {
   try {
     // Fetch data from external API
-    const res = await fetch('https://metabase.constellations.zone/api/public/card/76236082-c8a7-49e5-8433-aae4424a0366/query/json')
-    const data = await res.json()
+    const res = await axios.get('https://metabase.constellations.zone/api/public/card/76236082-c8a7-49e5-8433-aae4424a0366/query/json')
+    const data = await res.data
     const burnval = (data[0].total_burn).toLocaleString('en-US')
 
     // Pass data to the page via props
