@@ -3,9 +3,9 @@ import CountUp, { useCountUp } from 'react-countup'
 import { NextSeo } from 'next-seo';
 import axios from 'axios';
 
-import Gauge from '@/components/gauge.js'
+import Gauge from '@/components/gauge'
 import TotalSupply from '@/components/supply'
-import LiquidSupply from '@/components/liquid'
+import Unbonding from '@/components/unbonding'
 import StakedSupply from '@/components/staked'
 
 export default function Home({burnval, data, burnper}) {
@@ -18,14 +18,14 @@ export default function Home({burnval, data, burnper}) {
     <nav className="flex w-full z-10 bg-stargaze-accent py-2">
       <div className="flex flex-row m-auto overflow-hidden relative w-auto">
           <ul className="light:text-white dark:text-white flex flex-row w-[calc(400px*4)] animate-scroll font-sans"> 
-            <li className="text-white w-[400px]">BURNED 🔥 {burnval} /</li>
-            <LiquidSupply />
+          <li className="text-white w-[400px]">{burnper} % of supply 🔥 /</li>
+            <Unbonding />
             <TotalSupply />
             <StakedSupply />
           </ul>
           <ul className="flex flex-row w-[calc(400px*4)] animate-scroll font-sans">
-          <li className="text-white w-[400px]">{burnper} % of supply BURNED /</li>
-            <LiquidSupply />
+          <li className="text-white w-[400px]">{burnper} % of supply 🔥 /</li>
+            <Unbonding />
             <TotalSupply />
             <StakedSupply />
           </ul>

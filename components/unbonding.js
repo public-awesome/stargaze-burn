@@ -2,7 +2,7 @@ import useSWR from 'swr'
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
-export default function StakedSupply() {
+export default function Unbonding() {
     const url = 'https://rest.stargaze-apis.com/cosmos/staking/v1beta1/pool'
 
     const { data, error } = useSWR(url, fetcher)
@@ -10,9 +10,9 @@ export default function StakedSupply() {
     if (error) return <li className="w-[400px]">Failed to load /</li>
     if (!data) return <li className="w-[400px]">Loading... /</li>
 
-    const staked = (data.pool.bonded_tokens / 1000000).toLocaleString('en-US')
+    const unbonding = (data.pool.not_bonded_tokens / 1000000).toLocaleString('en-US')
 
     return (
-        <li className="w-[400px]">Staked {staked} $STARS /</li>
+        <li className="w-[400px]">{unbonding} $STARS Unbonding /</li>
     );
 };

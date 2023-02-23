@@ -17,7 +17,7 @@ module.exports = {
         sans: ['var(--font-basement)', ...fontFamily.sans],
       },
       animation: {
-        scroll: 'scroll 40s linear infinite',
+        scroll: 'scroll 20s linear infinite',
       },
       keyframes: {
         scroll: {

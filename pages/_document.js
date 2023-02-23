@@ -10,12 +10,12 @@ export default function Document() {
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff5a2b" />
         <meta name="apple-mobile-web-app-title" content="Stargaze Burn" />
-        <meta name="application-name" content="Stargaze Burn" />
+        <meta name="application-name" content="Stargaze Burn 🔥" />
         <meta name="msapplication-TileColor" content="#db2777" />
         <meta name="theme-color" content="#db2777" />
+        <meta property="og:image" content="/og-image.jpg" />
         <meta name="twitter:site" content="@StargazeZone" />
         <meta name="twitter:creator" content="@StargazeZone" />
-        <meta property="twitter:image" content="/og-image.jpg" />
         <meta property="twitter:image:width" content="1200" />
         <meta property="twitter:image:height" content="627" />
       </Head>

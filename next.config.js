@@ -5,16 +5,18 @@ const nextConfig = {
 
 module.exports = nextConfig
 
-module.exports = () => {
-  const rewrites = () => {
+module.exports = {
+  async headers() {
     return [
       {
-        source: "/",
-        destination: "https://metabase.constellations.zone/api/public/card/76236082-c8a7-49e5-8433-aae4424a0366/query/json",
+        source: "/pages/BasementGrotesque.otf",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
       },
     ];
-  };
-  return {
-    rewrites,
-  };
+  },
 };
