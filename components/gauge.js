@@ -131,7 +131,7 @@ export default function Gauge({ percentage }) {
                 d="M998.003 1408.62 970.132 273.405l-9.476-164.734-6.582 165.014-8.238 1135.845 52.167-.91Z"
                 className="handle" style={{
                   transform: `rotate(${handleEndRotation}deg)`,
-                  transition: 'transform 3s ease-in-out',
+                  transition: 'transform 1.5s ease-in-out',
                 }}
               />
             </g>

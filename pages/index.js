@@ -34,7 +34,7 @@ export default function Home({burnval, data, burnper}) {
     <div className="flex flex-col z-10 justify-center px-6 h-2/3">
       <Image width="624" height="190" alt="stargaze logo" src="/stargaze.png" className="w-8/12 lg:w-4/12 mx-auto pt-16" />
       <h1 className="lg:text-4xl text-2xl text-white font-sans text-center pt-16">TOTAL B🔥RNED </h1>
-      <h2 className="lg:text-5xl text-4xl text-white font-sans text-center mx-auto pt-3"><CountUp end={data[0].total_burn} duration={3} separator="," decimals="2" /></h2>
+      <h2 className="lg:text-5xl text-4xl text-white font-sans text-center mx-auto pt-3"><CountUp end={data[0].total_burn} duration={1.5} separator="," decimals="2" /></h2>
       <h4 className="pl-5 text-lg text-center font-mono mt-2">({burnper}% of supply)</h4>
       <a className="text-center mx-auto w-fit mt-10" href="https://stargaze.zone/launchpad" target="_blank" rel="noreferrer">
         <button className="bg-stargaze-accent text-md text-white px-10 py-3 rounded-lg mx-auto">
