@@ -35,6 +35,16 @@ li, h1, h2, button {
   color: white;
 }
 
+.handle {
+  transform: rotate(332deg);
+  transform-origin: bottom;
+  transform-box: fill-box;
+}
+
+.bg-stargaze-accent:hover {
+  background-color: #be185d;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

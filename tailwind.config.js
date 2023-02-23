@@ -10,7 +10,7 @@ module.exports = {
   ],
   theme: {
     colors: {
-      'stargaze-accent': '#FF0078',
+      'stargaze-accent': '#db2777',
     },
     extend: {
       fontFamily: {

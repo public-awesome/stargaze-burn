@@ -2,7 +2,7 @@ import '@/styles/globals.css'
 import localFont from '@next/font/local'
 
 const brandFont = localFont({ 
-  src: './BasementGrotesque.otf', 
+  src: '/BasementGrotesque.otf', 
   variable: '--font-basement', 
 })
 

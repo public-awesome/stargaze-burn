@@ -3,7 +3,7 @@ import useSWR from 'swr'
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export default function LiquidSupply() {
-    const url = 'https://stargaze-api.polkachu.com/cosmos/staking/v1beta1/pool'
+    const url = 'https://rest.stargaze-apis.com/cosmos/staking/v1beta1/pool'
 
     const { data, error } = useSWR(url, fetcher)
 

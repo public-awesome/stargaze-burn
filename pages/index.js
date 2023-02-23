@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import CountUp, { useCountUp } from 'react-countup'
 import { NextSeo } from 'next-seo';
 import axios from 'axios';
@@ -8,14 +7,14 @@ import TotalSupply from '@/components/supply'
 import LiquidSupply from '@/components/liquid'
 import StakedSupply from '@/components/staked'
 
-export default function Home({burnval, data}) {
+export default function Home({burnval, data, burnper}) {
   return (
-   <section className="flex flex-col justify-between h-screen max-h-screen">
+   <section className="flex flex-col justify-between h-screen max-h-screen overflow-hidden">
     <NextSeo
-      title={burnval + ` $STARS Burned - Stargaze Fair Burn`}
+      title={`Stargaze Fair Burn (` + burnper + `%)` }
       description={`Welcome to Stargaze where we have already burned: ` + burnval + ` $STARS.`}
     />
-    <nav className="flex w-full bg-stargaze-accent py-2">
+    <nav className="flex w-full z-10 bg-stargaze-accent py-2">
       <div className="flex flex-row m-auto overflow-hidden relative w-auto">
           <ul className="light:text-white dark:text-white flex flex-row w-[calc(400px*4)] animate-scroll font-sans"> 
             <li className="text-white w-[400px]">BURNED 🔥 {burnval} /</li>
@@ -24,27 +23,26 @@ export default function Home({burnval, data}) {
             <StakedSupply />
           </ul>
           <ul className="flex flex-row w-[calc(400px*4)] animate-scroll font-sans">
-            <li className="light:text-white w-[400px]">BURNED 🔥 {burnval} /</li>
+          <li className="text-white w-[400px]">{burnper} % of supply BURNED /</li>
             <LiquidSupply />
             <TotalSupply />
             <StakedSupply />
           </ul>
         </div>
     </nav>
-    <div className="flex flex-col justify-center px-6 h-2/3">
+    <div className="flex flex-col z-10 justify-center px-6 h-2/3">
       <img src="stargaze.png" className="w-8/12 lg:w-4/12 mx-auto pt-16" />
-      <h1 className="lg:text-4xl text-4xl text-white font-sans text-center pt-16">TOTAL B🔥RNED</h1>
+      <h1 className="lg:text-4xl text-2xl text-white font-sans text-center pt-16">TOTAL B🔥RNED </h1>
       <h2 className="lg:text-5xl text-4xl text-white font-sans text-center mx-auto pt-3"><CountUp end={data[0].total_burn} duration={3} separator="," decimals="2" /></h2>
-      <button data-tooltip-target="tooltip-default" className="bg-stargaze-accent hover:bg-black text-white py-3 px-4 rounded mx-auto mt-10">
-        BURN MORE 🔥
-      </button>
-      <div id="tooltip-default" role="tooltip" className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-        Tooltip content
-        <div className="tooltip-arrow" data-popper-arrow></div>
-      </div>
+      <h4 className="pl-5 text-lg text-center font-mono mt-2">({burnper}% of supply)</h4>
+      <a className="text-center mx-auto w-fit mt-10" href="https://stargaze.zone/launchpad" target="_blank">
+        <button className="bg-stargaze-accent text-md text-white px-10 py-3 rounded-lg mx-auto">
+          BURN MORE 🔥
+        </button>
+      </a>
     </div>
-    <div className="flex flex-col align-end px-3 scale-150 lg:scale-100 lg:max-w-auto overflow-hidden">
-      <Gauge />
+    <div className="flex flex-col z-10 align-end mb-5 lg:mb-0 px-3 scale-150 lg:scale-100 lg:max-w-auto overflow-hidden">
+      <Gauge percentage={burnper} />
     </div>
    </section>
   )
@@ -57,8 +55,14 @@ export async function getServerSideProps() {
     const data = await res.data
     const burnval = (data[0].total_burn).toLocaleString('en-US')
 
+    const res2 = await axios.get('https://rest.stargaze-apis.com/cosmos/bank/v1beta1/supply/ustars')
+    const data2 = await res2.data
+    const supply = ((data2.amount.amount) / 1000000)
+
+    const burnper = ((data[0].total_burn / supply) * 100).toFixed(3)
+
     // Pass data to the page via props
-    return { props: { burnval, data } }
+    return { props: { burnval, data, burnper } }
   } catch (err) {
     console.log(err)
   }
