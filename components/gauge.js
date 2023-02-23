@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
 
 export default function Gauge({ percentage }) {
-  const [previousPercentage, setPreviousPercentage] = useState(0);
   const [currentPercentage, setCurrentPercentage] = useState(0);
 
   useEffect(() => {
-    setPreviousPercentage(currentPercentage);
     setCurrentPercentage(percentage);
   }, [percentage]);
 
-  const handleStartRotation = -28;
   const handleEndRotation = currentPercentage * 56 - 28;
 
 
