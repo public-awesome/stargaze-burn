@@ -1,11 +1,10 @@
 import Image from 'next/image'
-import CountUp, { useCountUp } from 'react-countup'
 import { NextSeo } from 'next-seo';
 import axios from 'axios';
+import useSWR from 'swr'
 
 import Gauge from '@/components/gauge'
 import TotalSupply from '@/components/supply'
-import Unbonding from '@/components/unbonding'
 import StakedSupply from '@/components/staked'
 
 export default function Home({burnval, data, burnper}) {
@@ -18,14 +17,14 @@ export default function Home({burnval, data, burnper}) {
     <nav className="flex w-full z-10 bg-stargaze-accent py-2">
       <div className="flex flex-row m-auto overflow-hidden relative w-auto">
           <ul className="light:text-white dark:text-white flex flex-row w-[calc(400px*4)] animate-scroll font-sans"> 
-          <li className="text-white w-[400px]">{burnper} % of supply 🔥 /</li>
-            <Unbonding />
+            <li className="text-white w-[400px]">{burnper} % of supply 🔥 /</li>
+            <li className="text-white w-[400px]">{DistToStakers()} dist. to stakers /</li>
             <TotalSupply />
             <StakedSupply />
           </ul>
           <ul className="flex flex-row w-[calc(400px*4)] animate-scroll font-sans">
-          <li className="text-white w-[400px]">{burnper} % of supply 🔥 /</li>
-            <Unbonding />
+            <li className="text-white w-[400px]">{burnper} % of supply 🔥 /</li>
+            <li className="text-white w-[400px]">{DistToStakers()} dist. to stakers /</li>
             <TotalSupply />
             <StakedSupply />
           </ul>
@@ -34,7 +33,7 @@ export default function Home({burnval, data, burnper}) {
     <div className="flex flex-col z-10 justify-center px-6 h-2/3">
       <Image width="624" height="190" alt="stargaze logo" src="/stargaze.png" className="w-8/12 lg:w-4/12 mx-auto pt-16" />
       <h1 className="lg:text-4xl text-2xl text-white font-sans text-center pt-16">TOTAL B🔥RNED </h1>
-      <h2 className="lg:text-5xl text-4xl text-white font-sans text-center mx-auto pt-3"><CountUp end={data[0].total_burn} duration={1.5} separator="," decimals="2" /></h2>
+      <h2 className="lg:text-5xl text-4xl text-white font-sans text-center mx-auto pt-3">{FairBurn()}</h2>
       <h4 className="pl-5 text-lg text-center font-mono mt-2">({burnper}% of supply)</h4>
       <a className="text-center mx-auto w-fit mt-10" href="https://stargaze.zone/launchpad" target="_blank" rel="noreferrer">
         <button className="bg-stargaze-accent text-md text-white px-10 py-3 rounded-lg mx-auto">
@@ -68,3 +67,19 @@ export async function getServerSideProps() {
     console.log(err)
   }
 }
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+function FairBurn() {
+  const { data, error, isLoading } = useSWR('/api/getFairBurn', fetcher);
+  if (error) { return "Failed to load."}
+  if (isLoading) { return "Loading..." }
+  if (data) return data[0].total_burn.toLocaleString('en-US') 
+};
+
+function DistToStakers() {
+  const { data, error, isLoading } = useSWR('/api/getFairBurn', fetcher);
+  if (error) { return "Failed to load."}
+  if (isLoading) { return "Loading..." }
+  if (data) return data[0].total_dist_stakers.toLocaleString('en-US') 
+};
