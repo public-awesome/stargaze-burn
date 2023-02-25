@@ -35,6 +35,13 @@ li, h1, h2, h4, button {
   color: white;
 }
 
+h1 .stargaze-gradient {
+  background: linear-gradient(267deg, rgba(56,171,236,1) 0%, rgba(255,245,129,1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .handle {
   transform: rotate(332deg);
   transform-origin: bottom;
