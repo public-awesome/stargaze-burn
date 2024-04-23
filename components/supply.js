@@ -3,7 +3,7 @@ import useSWR from 'swr'
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export default function TotalSupply() {
-    const url = 'https://rest.stargaze-apis.com/cosmos/bank/v1beta1/supply/ustars'
+    const url = 'https://rest.stargaze-apis.com/cosmos/bank/v1beta1/supply/by_denom?denom=ustars'
 
     const { data, error } = useSWR(url, fetcher)
 

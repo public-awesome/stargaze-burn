@@ -55,7 +55,7 @@ export async function getServerSideProps() {
     const data = await res.data
     const burnval = (data[0].total_burn).toLocaleString('en-US')
 
-    const res2 = await axios.get('https://rest.stargaze-apis.com/cosmos/bank/v1beta1/supply/ustars')
+    const res2 = await axios.get('https://rest.stargaze-apis.com/cosmos/bank/v1beta1/supply/by_denom?denom=ustars')
     const data2 = await res2.data
     const supply = ((data2.amount.amount) / 1000000)
 
